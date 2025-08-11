@@ -21,29 +21,33 @@ export default function Dashboard(){
     load();
   },[]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-gray-50 text-gray-500 text-lg">Loading...</div>;
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
-      {profile ? (
-        <div className="space-y-3">
-          <div className="bg-white p-4 rounded shadow">
-            <h3 className="text-xl">{profile.name || 'No name set'}</h3>
-            <p>{profile.email}</p>
-            <p>Skills: {(profile.skills||[]).join(', ')}</p>
-            <div className="mt-2">
-              <Link to="/profile/edit" className="mr-2 px-3 py-1 bg-yellow-400 rounded">Edit</Link>
-              <Link to="/profile/preview" className="px-3 py-1 bg-green-500 text-white rounded">Preview</Link>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+      <div className="w-full max-w-2xl bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
+        <h2 className="text-3xl font-extrabold text-center text-indigo-700 mb-8 tracking-tight">Dashboard</h2>
+        {profile ? (
+          <div className="space-y-6">
+            <div className="bg-indigo-50 p-6 rounded-2xl shadow flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <h3 className="text-2xl font-bold text-indigo-800">{profile.name || 'No name set'}</h3>
+                <p className="text-gray-600">{profile.email}</p>
+                <p className="text-gray-500 mt-1">Skills: <span className="font-medium text-indigo-700">{(profile.skills||[]).join(', ')}</span></p>
+              </div>
+              <div className="mt-4 md:mt-0 flex gap-3">
+                <Link to="/profile/edit" className="px-5 py-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-semibold rounded-lg shadow transition">Edit</Link>
+                <Link to="/profile/preview" className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow transition">Preview</Link>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="bg-white p-4 rounded shadow">
-          <p>You don't have a profile yet.</p>
-          <Link to="/profile/edit" className="inline-block mt-2 px-3 py-1 bg-blue-600 text-white rounded">Create Profile</Link>
-        </div>
-      )}
+        ) : (
+          <div className="bg-indigo-50 p-6 rounded-2xl shadow text-center">
+            <p className="text-gray-700">You don't have a profile yet.</p>
+            <Link to="/profile/edit" className="inline-block mt-4 px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow transition">Create Profile</Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
