@@ -1,4 +1,4 @@
-const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:5000/api';
+const API_BASE = process.env.REACT_APP_API_BASE || 'https://portfolio-backend-five-iota.vercel.app/api';
 
 export const setAuthToken = (token) => {
   if (token) localStorage.setItem('token', token);
